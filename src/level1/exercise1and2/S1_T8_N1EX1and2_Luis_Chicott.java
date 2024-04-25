@@ -2,6 +2,7 @@ package level1.exercise1and2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class S1_T8_N1EX1and2_Luis_Chicott {
 
@@ -31,26 +32,18 @@ public class S1_T8_N1EX1and2_Luis_Chicott {
 	}
 	
 	public static List<String> wordsWithO(List<String> words){
-		List<String> wordsWithO = new ArrayList<>();
-		
-		 words.forEach(word -> {
-	            if (word.contains("o") || word.contains("O")) {
-	            	wordsWithO.add(word);
-	            }
-	        });		
+		List<String> wordsWithO = words.stream()
+								.filter(w -> w.toLowerCase().contains("o")) 
+					            .collect(Collectors.toList());		
 		return wordsWithO; 		
 	}
 	
 	public static List<String> bigWordsWithO(List<String> words){
-		List<String> bigWordsWithO = new ArrayList<>();
-		
-		 words.forEach(word -> {
-	            if (word.contains("o") || word.contains("O")) {
-	            	if (word.length() > 5) {
-	            		bigWordsWithO.add(word);
-	            	}	            	
-	            }
-	        });		
+		List<String>  bigWordsWithO = words.stream()
+				.filter(w -> w.toLowerCase().contains("o")) 
+				.filter(w -> w.length() > 5)
+	            .collect(Collectors.toList());		
+	
 		return bigWordsWithO; 		
 	}
 }
